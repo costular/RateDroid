@@ -1,5 +1,20 @@
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+
+publish {
+
+    def groupProjectID = 'com.costular'
+    def artifactProjectID = 'ratedroid'
+    def publishVersionID = '0.1.0'
+
+    userOrg = 'costular'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'A library which helps you asking users for a review. It manages for you when to ask it depending sessions and includes ready and custom Dialogs to show to your users.'
+    website = 'https://github.com/costular/RateDroid'
+}
 
 android {
     compileSdkVersion 28
@@ -8,7 +23,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
