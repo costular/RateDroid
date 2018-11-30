@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -12,7 +11,7 @@ object RateDroid {
 
     private var context: WeakReference<Context>? = null
 
-    private var appsPackage = ""
+    var appPackage = ""
     var countDayByDay: Boolean = true
     var launchTimes = 5
     var remindIntervalDays = 3
@@ -20,11 +19,11 @@ object RateDroid {
 
     fun with(context: Context): RateDroid {
         this.context = WeakReference(context)
-        appsPackage = context.packageName
+        appPackage = context.packageName
         return this
     }
 
-    fun init() {
+    fun init(): RateDroid {
         checkContext()
         val launchDate = PreferencesHelper.getInstallDate(getContext())
 
@@ -39,6 +38,7 @@ object RateDroid {
                 PreferencesHelper.incrementLaunchTimes(getContext(), increment = incrementDays)
             }
         }
+        return this
     }
 
     private fun checkContext() {
@@ -72,18 +72,20 @@ object RateDroid {
     }
 
     private fun handlePackageName() {
-        if (appsPackage.isNotEmpty()) {
+        if (appPackage.isNotEmpty()) {
             dialog.arguments = Bundle().apply {
-                putString(RateDroidDialog.PARAM_PACKAGE, appsPackage)
+                putString(RateDroidDialog.PARAM_PACKAGE, appPackage)
             }
         }
     }
 
-    fun shouldShowRate(): Boolean = (hasPassedLaunchTimes() && hasPassedRemindDays()) || BuildConfig.DEBUG
+    private fun shouldShowRate(): Boolean = (hasPassedLaunchTimes() && hasPassedRemindDays() && !dialogHasBeenShown()) || BuildConfig.DEBUG
 
-    fun hasPassedLaunchTimes(): Boolean = PreferencesHelper.getLaunchTimes(getContext()) > launchTimes
+    private fun dialogHasBeenShown(): Boolean = PreferencesHelper.dialogHasShown(getContext())
 
-    fun hasPassedRemindDays(): Boolean {
+    private fun hasPassedLaunchTimes(): Boolean = PreferencesHelper.getLaunchTimes(getContext()) > launchTimes
+
+    private fun hasPassedRemindDays(): Boolean {
         val remindTimestamp = PreferencesHelper.getRemindDate(getContext())
 
         if (remindTimestamp == -1L) {
@@ -93,6 +95,24 @@ object RateDroid {
         val remindDate = remindTimestamp.toDate()
         val daysPassed = DateUtils.daysPassed(remindDate, Date())
         return daysPassed > remindIntervalDays
+    }
+
+    fun clickRemindLater() {
+        checkContext()
+        PreferencesHelper.setRemindDate(getContext())
+    }
+
+    fun clickNo() {
+        checkContext()
+        PreferencesHelper.setDialogHasShown(getContext(), true)
+    }
+
+    fun clickRate() {
+        checkContext()
+        PreferencesHelper.setDialogHasShown(getContext(), true)
+
+        val intent = IntentHelper.generatePlayStoreIntent(appPackage)
+        getContext().startActivity(intent)
     }
 
 }

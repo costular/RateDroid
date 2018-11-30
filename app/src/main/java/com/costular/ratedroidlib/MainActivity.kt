@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
                 .apply {
                     launchTimes = 10
                 }
+                .init()
                 .showIfNeeded(this)
         }
     }
