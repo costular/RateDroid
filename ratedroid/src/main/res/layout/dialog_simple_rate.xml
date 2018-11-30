@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:minWidth="300dp"
+              android:paddingTop="24dp"
+              android:paddingBottom="8dp"
+              android:paddingStart="16dp"
+              android:paddingEnd="16dp">
+
+    <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"/>
+
+    <TextView
+            android:id="@+id/textSimpleRateTitle"
+            style="@style/SimpleRateDialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/dialog_simple_rate_title"/>
+
+    <TextView
+            android:id="@+id/textSimpleRateDescription"
+            style="@style/SimpleRateDialogDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_simple_rate_description"
+            android:layout_marginTop="8dp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:layout_marginTop="24dp">
+
+        <Button android:id="@+id/buttonNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_simple_rate_button_no"
+                style="@style/SimpleRateDialogBorderlessButton"/>
+
+        <Button android:id="@+id/buttonRemindMeLater"
+                style="@style/SimpleRateDialogBorderlessButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_simple_rate_button_remind"/>
+
+        <Button android:id="@+id/buttonRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_simple_rate_button_rate"/>
+
+    </LinearLayout>
+
+</LinearLayout>

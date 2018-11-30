@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SimpleRateDialogTitle" parent="TextAppearance.AppCompat.Title">
+
+    </style>
+
+    <style name="SimpleRateDialogDescription" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SimpleRateDialogBorderlessButton" parent="@style/Widget.AppCompat.Button.Borderless">
+
+    </style>
+
+    <style name="SimpleRateDialogAccentButton" parent="@style/Widget.AppCompat.Button">
+        <item name="backgroundTint">?colorAccent</item>
+    </style>
+
+</resources>

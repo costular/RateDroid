@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ratedroid</string>
+    <string name="dialog_simple_rate_title">Enjoying %1$s?</string>
+    <string name="dialog_simple_rate_app_alternative">the app</string>
+    <string name="dialog_simple_rate_description">We care about your opinion. Could you rate %1$s in Play Store? We\'d
+        appreciate it!
+    </string>
+    <string name="dialog_simple_rate_button_rate">Rate!</string>
+    <string name="dialog_simple_rate_button_remind">Later</string>
+    <string name="dialog_simple_rate_button_no">No, thanks</string>
+</resources>
+gi
