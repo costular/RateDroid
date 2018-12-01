@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
 
-command = "./gradlew clean build bintrayUpload -PbintrayUser=costular -PbintrayKey=3ecc6a88e3452b785e84ff6336e0f02ae5279aa0 -PdryRun=false"
+api_key = os.environ['BINTRAY_KEY']
+command = "./gradlew clean build bintrayUpload -PbintrayUser=costular -PbintrayKey={bintray} -PdryRun=false".format(bintray=api_key)
 os.system(command)
