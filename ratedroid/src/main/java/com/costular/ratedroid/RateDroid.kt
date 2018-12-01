@@ -11,6 +11,7 @@ object RateDroid {
 
     private var context: WeakReference<Context>? = null
 
+    var debug = BuildConfig.DEBUG
     var appPackage = ""
     var countDayByDay: Boolean = true
     var launchTimes = 5
@@ -23,7 +24,7 @@ object RateDroid {
         return this
     }
 
-    fun init(): RateDroid {
+    fun init(debug: Boolean = false): RateDroid {
         checkContext()
         val launchDate = PreferencesHelper.getInstallDate(getContext())
 
@@ -38,6 +39,11 @@ object RateDroid {
                 PreferencesHelper.incrementLaunchTimes(getContext(), increment = incrementDays)
             }
         }
+
+        if (debug) {
+            this.debug = true
+        }
+
         return this
     }
 
@@ -79,7 +85,7 @@ object RateDroid {
         }
     }
 
-    private fun shouldShowRate(): Boolean = (hasPassedLaunchTimes() && hasPassedRemindDays() && !dialogHasBeenShown()) || BuildConfig.DEBUG
+    private fun shouldShowRate(): Boolean = (hasPassedLaunchTimes() && hasPassedRemindDays() && !dialogHasBeenShown()) || debug
 
     private fun dialogHasBeenShown(): Boolean = PreferencesHelper.dialogHasShown(getContext())
 
