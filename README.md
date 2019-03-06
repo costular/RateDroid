@@ -23,7 +23,7 @@ dependencies {
 RateDroid
     .with(this) // pass context
     .init() // DON'T forget to intialize
-    .showIfNeeded(this) // show the dialog if it should
+    .showIfNeeded(this) // pass an activity or a fragment. Show the dialog if it should
 ```
 
 ## Advanced usage
@@ -49,5 +49,16 @@ RateDroid
         dialog = MyRateDialog // <--
     }
     .init()
+    .showIfNeeded(this)
+```
+
+## Debug
+
+You could need to test and debug your dialog. In that case, you can force to show the dialog.
+
+```kotlin
+RateDroid
+    .with(this)
+    .init(debug = true) // <-- enable debug
     .showIfNeeded(this)
 ```
